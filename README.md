@@ -1,3 +1,7 @@
+**Task 5**
+1. Learn about the OOPS concept (Classes, Inheritance, Data Abstraction, Encapsulation) 
+2. Store the student details using Class
+
 **Edit a file, create a new file, and clone from Bitbucket in under 2 minutes**
 
 When you're done, you can delete the content in this README and update the file with details for others getting started with your repository.
