@@ -55,7 +55,6 @@
 
 	}
 
-
 	class Marks extends Student implements Func2{
 
 		function __construct($int, $sem) 
