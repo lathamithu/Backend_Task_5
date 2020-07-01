@@ -41,7 +41,6 @@ header{
     border-color: #fff;
     box-shadow:0 1px 3px rgba(255,255,255,0.5);
     outline: 0 none;
-    
 }
 
 .form-horizontal .form-control::-moz-placeholder{
