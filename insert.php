@@ -25,6 +25,7 @@ class Connection{
 			echo "Failed" . $e->getMessage();
 		}
 	}
+	
 
 	public function insert($Name,$Date_,$Gender,$Department,$Branch,$Internals,$Semester,$Total)
 	{
