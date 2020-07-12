@@ -1,7 +1,15 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Student Details</title>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <style>
 	
@@ -18,15 +26,6 @@ header{
 	border-color: white;
 	border-style: double;
 	border-width: 15px;
-}
-.container{
-	text-align: left;
-	margin-left: 200px;
-
-}
-
-.form-horizontal .form-group{
-    margin-bottom: 30px;
 }
 
 .form-horizontal .form-control{
@@ -59,6 +58,7 @@ header{
     margin-left: 650px;
 
 }
+
 #btn:hover{
 	color: white;
     background-color: linear-gradient(to left,#014d6f 10%,#2b8e8b);
@@ -67,105 +67,106 @@ header{
     font-weight: 600;
     margin-left: 650px;
 }
+
 .rad {  
   	display: table-cell;
   	text-align:center;
 }
 
 </style>
+
 <body>
+
 	<header>
 		<h3>STUDENT FORM</h3>
 	</header>
+	
 	<br>
 	<br>
 
-	<div class="container">
+	
 	<form action="insert.php" method="post" onSubmit="window.location.reload();" class="form-horizontal">
 
-		<div class="form-group">
-		<label>Name : </label>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;		
-		<label>Branch :</label>
+			<div class="col-sm-6">
+				<label>NAME : </label>
+				<br><br>
+				<input type="text" name="name" value="<?= (isset($_SESSION['name'])) ? $_SESSION['name'] : ''; ?>" class="form-control" required>
 
-		<br>
-		<br>
+				<?= (isset($_SESSION['nameV']) && $_SESSION['nameV'] == false) ? '<br><br>*Please provide a valid name.' : ''; ?>
+				<br><br><br>
+			</div>
+
+			<div class="col-sm-6">
+				<label>BRANCH :</label>
+				<br><br>
+				<input type="text" name="branch" value="<?= (isset($_SESSION['branch'])) ? $_SESSION['branch'] : ''; ?>" placeholder="e.g. CSE" class="form-control" required>
+				<?= (isset($_SESSION['branchV']) && $_SESSION['branchV'] == false) ? '*Please provide a valid branch.' : ''; ?>
+				<br><br><br>
+			</div>
+			
+			<div class="col-sm-6">
+				<label>DATE OF BIRTH :</label>
+				<br><br>
+				<input type="date" name="date" value="<?= (isset($_SESSION['dob'])) ? $_SESSION['dob'] : ''; ?>" class="form-control" required>
+
+				<?= (isset($_SESSION['dobV']) && $_SESSION['dobV'] == false) ? '<br><br>*Please provide a valid date of birth.' : ''; ?>
+				<br><br><br>
+			</div>
+
+			<div class="col-sm-6">
+				<label>INTERNALS :</label>
+				<br><br>
+				<input type="number" value="<?= (isset($_SESSION['internals'])) ? $_SESSION['internals'] : ''; ?>" min="0" max="50" name="int" class="form-control" required>
+
+				<?= (isset($_SESSION['intV']) && $_SESSION['intV'] == false) ? '<br><br>*Please provide a number from 1-50.' : ''; ?>
+				<br><br><br>
+		   
+			</div>
+		 
+			<div class="col-sm-6">
+				<label>GENDER :</label>
+					<br><br>
+					<div class="rad">
+					<input type="radio" name="gender" <?= (isset($_SESSION["gender"]) && $_SESSION["gender"] == "Male") ? 'checked' : '' ?> value="Male">
+					<label for="Male">Male</label>
+					</div>
+					<br>
+					<div class="rad">
+					<input type="radio" name="gender" <?= (isset($_SESSION["gender"]) && $_SESSION["gender"] == "Female") ? 'checked' : '' ?> value="Female">
+					<label for="female">Female</label>
+					</div>
+					<br>
+					<div class="rad">
+						<input type="radio" name="gender" <?= (isset($_SESSION["gender"]) && $_SESSION["gender"] == "Others") ? 'checked' : '' ?> value="Others" >
+						<label for="others">Others</label>
+					</div>
+
+				<?= (isset($_SESSION['genderV']) && $_SESSION['genderV'] == false) ? '<br><br>*Please provide a gender.' : ''; ?>
+				<br><br><br>
+			</div>
+
+			<div class="col-sm-6">
+				<label>SEMESTER :</label>
+					<br><br>
+					<input type="number" value="<?= (isset($_SESSION['semester'])) ? $_SESSION['semester'] : ''; ?>" min="0" max="50" step="0.01" name="sem" class="form-control" required>
+					<?= (isset($_SESSION['semV']) && $_SESSION['semV'] == false) ? '<br><br>*Please provide a number from 1-50.' : ''; ?>
+					<br><br><br>
+			</div>
 		
-		<input type="text" name="name" class="form-control">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="text" name="branch" class="form-control">
-		</div>
-
-
-		<br>
-		<br>
-
-
-		<div class="form-group">
-		<label>DOB :</label>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	
-		<label>Internals :</label>
-
-		<br>
-		<br>
-
-		<input type="date" name="date" class="form-control">
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<input type="number" min="0" max="50" name="int" class="form-control">
-	    </div>
-
-
-		<br>
-		<br>
-
-
-		<div class="form-group">
-		<label>Gender :</label>
-		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<label>Semester :</label>
-
-		<br>
-		<br>
-		
-		<div class="rad">
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="gender" value="Male" >
-			<label for="Male">Male</label>
-		</div>
-
-		<div class="rad">
-		&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="radio" name="gender" value="Female">
-			<label for="female">Female</label>
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<input type="number" min="0" max="50" name="sem" class="form-control">
-		</div>
-		
-		<br>
-
-		<div class="rad">
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<input type="radio" name="gender" value="Others" >
-				<label for="others">Others</label>
-		</div>
-	    </div>
-
-
-		<button id="btn" >Submit</button>
-		
-		<div class="form-group">
-		<label>Department :</label>
-
-		<br>
-		<br>
-		
-		<input type="text" name="department" class="form-control">
-	    </div>
-
-		</div>
-
+			<div class="col-sm-6">
+				<label>DEPARTMENT :</label>
+				<br><br>
+				<input type="text" name="department" value="<?= (isset($_SESSION['dept'])) ? $_SESSION['dept'] : ''; ?>" placeholder="e.g. B.Tech" class="form-control" required>
+				<?= (isset($_SESSION['deptV']) && $_SESSION['deptV'] == false) ? '<br><br>*Please provide a valid department.': ''; ?>
+				<br><br><br>
+	    	</div>
+			<div class="col-sm-6">
+				<button id="btn" >Submit</button>
+			</div>
 	</form>
-
-
 </body>
 </html>
+
+<?php
+session_unset();
+?>
